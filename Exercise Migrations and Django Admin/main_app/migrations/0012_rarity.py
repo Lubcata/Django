@@ -10,8 +10,20 @@ def set_rarity_level(apps, schema_editor):
     for item in items:
         if item.price <= 10:
             item.rarity = 'Rare'
-        elif 11 < item.price < 20:
-            item.rarity = 'Very Rare' 
+        elif item.price <= 20:
+            item.rarity = 'Very Rare'
+        elif item.price <= 30:
+            item.rarity = 'Extremely Rare'
+        else:
+            item.rarity = 'Mega Rare'
+        item.save()
+
+def set_rarity_level_to_default(apps, schema_editor):
+    items_model = apps.get_model('main_app', 'Item')
+
+    for item in items_model.objects.all():
+        item.rarity = items_model._meta.get_field('rarity').default
+        item.save()
 
 
 class Migration(migrations.Migration):
@@ -21,4 +33,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(set_rarity_level, set_rarity_level_to_default),
     ]
