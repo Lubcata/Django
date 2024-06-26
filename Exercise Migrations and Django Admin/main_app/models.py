@@ -11,14 +11,16 @@ class Shoe(models.Model):
 class UniqueBrands(models.Model):
     brand_name = models.CharField(max_length=25)
 
+
 class EventRegistration(models.Model):
     event_name = models.CharField(max_length=60)
     participant_name = models.CharField(max_length=50)
     registration_date = models.DateField()
 
     def __str__(self) -> str:
-        return f"{self.participant_name} - {self.event_name}"  
-    
+        return f"{self.participant_name} - {self.event_name}"
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
@@ -27,7 +29,8 @@ class Movie(models.Model):
 
     def __str__(self):
         return f"Movie {self.title} by {self.director}"
-    
+
+
 class Student(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -37,7 +40,8 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-    
+
+
 class Supplier(models.Model):
     name = models.CharField(max_length=100)
     contact_person = models.CharField(max_length=50)
@@ -47,7 +51,8 @@ class Supplier(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.phone_number}"
-    
+
+
 class Course(models.Model):
     title = models.CharField(max_length=90)
     lecturer = models.CharField(max_length=90)
@@ -58,7 +63,8 @@ class Course(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.lecturer}"
-    
+
+
 class Person(models.Model):
     name = models.CharField(
         max_length=40,
@@ -74,8 +80,6 @@ class Person(models.Model):
     def __str__(self):
         return f"Name: {self.name}"
 
-
-
-
-
-
+class Item(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
